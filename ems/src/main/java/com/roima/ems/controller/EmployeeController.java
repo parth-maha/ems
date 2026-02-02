@@ -3,6 +3,7 @@ package com.roima.ems.controller;
 import com.roima.ems.DTO.EditEmployeeDTO;
 import com.roima.ems.DTO.EmployeeDTO;
 import com.roima.ems.DTO.UpdateEmployeeDTO;
+import com.roima.ems.config.ApiResponse;
 import com.roima.ems.service.EmployeeService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,36 @@ public class EmployeeController {
         try{
             EmployeeDTO response = employeeService.getEmployeeById(id);
             return ResponseEntity.status(HttpStatus.OK).body(response);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @GetMapping(value = "/{id}", params = "version=2")
+    public ResponseEntity<?> getEmployeeIdByParameterVersion(@PathVariable Long id){
+        try{
+            EmployeeDTO employee = employeeService.getEmployeeById(id);
+            ApiResponse<EmployeeDTO> response= new ApiResponse<>(
+                    HttpStatus.OK.value(),
+                    "Parameter Versioning",
+                    employee
+            );
+            return ResponseEntity.ok(response);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @GetMapping(value = "/{id}",headers = "X-API-VERSION=3")
+    public ResponseEntity<?> getEmployeeIdByHeaderVersion(@PathVariable Long id){
+        try{
+            EmployeeDTO employee = employeeService.getEmployeeById(id);
+            ApiResponse<EmployeeDTO> response= new ApiResponse<>(
+                    HttpStatus.OK.value(),
+                    "Header Versioning",
+                    employee
+            );
+            return ResponseEntity.ok(response);
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
