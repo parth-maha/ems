@@ -7,6 +7,7 @@ import com.roima.ems.config.ApiResponse;
 import com.roima.ems.service.EmployeeService;
 import com.roima.ems.utils.Group1;
 import com.roima.ems.utils.Group2;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
@@ -25,6 +26,14 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
 
+    @Operation(
+            description = "Get Users Service",
+            responses = {
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400",ref = "badRequest"),
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "500",ref = "internalServerError"),
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200",ref = "successfulResponse")
+            }
+    )
     @GetMapping("/{id}")
     public ResponseEntity<?> getEmployeeById(@PathVariable Long id){
         try{
