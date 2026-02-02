@@ -8,8 +8,18 @@ import com.roima.ems.repository.EmployeeRepo;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Service
@@ -18,6 +28,9 @@ public class EmployeeService {
 
     private final EmployeeRepo employeeRepo;
     private final ModelMapper modelMapper;
+
+    @Value("${image.path}")
+    String imageFolder;
 
     public List<EmployeeDTO> getEmployees() {
         List<Employees> employees = employeeRepo.findAll();
@@ -77,5 +90,34 @@ public class EmployeeService {
         modelMapper.map(dto,employee);
 
         return modelMapper.map(employeeRepo.save(employee), EditEmployeeDTO.class);
+    }
+
+    public void uploadFile(Long id,MultipartFile file) throws IOException {
+        Employees employee = employeeRepo.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("Employee not found"));
+
+        String fileName = "profile_" + id + ".png";
+
+        Path path = Paths.get(imageFolder + fileName);
+
+        Files.write(path,file.getBytes());
+    }
+
+    public Resource getProfilePicture(Long id) throws Exception {
+        Employees employee = employeeRepo.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("Employee not found"));
+
+        String fileName = "profile_" + id + ".png";
+        Path filePath = Paths.get(imageFolder).resolve(fileName);
+
+        Resource resource = new UrlResource(filePath.toUri());
+        if(resource.exists()){
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Cache-Control", "public, max-age=3600");
+
+            return resource;
+        }
+
+        throw new Exception("File not found");
     }
 }

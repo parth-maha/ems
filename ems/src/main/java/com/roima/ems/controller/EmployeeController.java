@@ -5,11 +5,16 @@ import com.roima.ems.DTO.EmployeeDTO;
 import com.roima.ems.DTO.UpdateEmployeeDTO;
 import com.roima.ems.config.ApiResponse;
 import com.roima.ems.service.EmployeeService;
+import com.roima.ems.utils.Group1;
+import com.roima.ems.utils.Group2;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -60,6 +65,41 @@ public class EmployeeController {
         }
     }
 
+    @GetMapping(value = "/{id}",produces = "application/vnd.roima.ems-v3+json")
+    public ResponseEntity<?> getEmployeeIdByContent(@PathVariable Long id){
+        try{
+            EmployeeDTO employee = employeeService.getEmployeeById(id);
+            ApiResponse<EmployeeDTO> response= new ApiResponse<>(
+                    HttpStatus.OK.value(),
+                    "Content Negotiation Versioning",
+                    employee
+            );
+            return ResponseEntity.ok(response);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/profile/{id}")
+    public ResponseEntity<?> uploadProfilePicture(@PathVariable Long id, @RequestParam("file")MultipartFile file){
+        try{
+            employeeService.uploadFile(id,file);
+            return ResponseEntity.status(HttpStatus.OK).body("File uploaded");
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to upload");
+        }
+    }
+
+    @GetMapping("/profile/{id}")
+    public ResponseEntity<?> getProfilePicture(@PathVariable Long id){
+        try{
+            Resource resource =employeeService.getProfilePicture(id);
+            return ResponseEntity.status(HttpStatus.OK).body(resource);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
     @GetMapping
     public ResponseEntity<?> getAllEmployees(){
         try{
@@ -81,7 +121,7 @@ public class EmployeeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateEmployee(@PathVariable Long id,@Valid @RequestBody UpdateEmployeeDTO dto){
+    public ResponseEntity<?> updateEmployee(@PathVariable Long id, @Validated(Group1.class) @RequestBody UpdateEmployeeDTO dto){
         try{
             UpdateEmployeeDTO response = employeeService.updateEmployee(id,dto);
             return ResponseEntity.status(HttpStatus.OK).body(response);

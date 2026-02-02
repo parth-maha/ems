@@ -1,8 +1,11 @@
 package com.roima.ems.DTO;
 
+import com.roima.ems.utils.Group1;
+import com.roima.ems.utils.Group2;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Null;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +24,8 @@ public class UpdateEmployeeDTO {
     @NotNull(message = "Email cannot be null")
     private String email;
 
-    @NotNull(message = "Department cannot be null")
+    @Email(groups = Group2.class,message = "Department should be a email")
+    @NotNull(message = "Department cannot be null",groups = Group1.class)
     private String department;
 
     @Min(0)
