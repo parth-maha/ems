@@ -8,6 +8,8 @@ import com.roima.ems.service.EmployeeService;
 import com.roima.ems.utils.Group1;
 import com.roima.ems.utils.Group2;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
@@ -91,6 +93,18 @@ public class EmployeeController {
         }
     }
 
+    @Operation(
+            summary = "Create a new employee",
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    required = true,
+                    content = @Content(
+                            mediaType = "application/json",
+                            examples = @ExampleObject(
+                                    name = "Payload"
+                            )
+                    )
+            )
+    )
     @PostMapping
     private ResponseEntity<?> createEmployee(@Valid @RequestBody EmployeeDTO dto){
         try{

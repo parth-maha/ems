@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -28,36 +29,35 @@ public class FileService {
     private final EmployeeRepo employeeRepo;
 
     public String saveProfileImage(MultipartFile file, Long id) throws IOException {
+        Employees emp = employeeRepo.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Employee Not found"));
+
         Path uploadPath = Paths.get(imagePath);
 
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
         }
-        Employees emp = employeeRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Employee Not found"));
+
         String fileName = "profile_" + id + ".png";
         Path filePath = uploadPath.resolve(fileName);
+
         Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-        emp.setProfilePath(filePath.toString());
-        employeeRepo.save(emp);
-        return filePath.toString();
+
+        return fileName;
     }
 
-    public ResponseEntity<Resource> getProfileImage(Long Id) throws MalformedURLException {
-        Employees emp = employeeRepo.findById(Id).orElseThrow(() -> new IllegalArgumentException("Employee Not found"));
-        String fileName = "profile_" + emp.getId() + ".png";
+    public Resource getProfileImage(Long id) throws IOException {
+        Employees emp = employeeRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Employee Not found"));
+
+        String fileName = "profile_" + id + ".png";
+
         Path filePath = Paths.get(imagePath).resolve(fileName);
         Resource resource = new UrlResource(filePath.toUri());
-        if (resource.exists()) {
-            HttpHeaders headers = new HttpHeaders();
-            // Use set() to replace any existing Cache-Control header
-            headers.set("Cache-Control", "public, max-age=3600");
-            return ResponseEntity.ok()
-                    .headers(headers)
-                    .contentType(MediaType.IMAGE_PNG)
-//                    .cacheControl(CacheControl.maxAge(60, TimeUnit.SECONDS).cachePublic())
-                    .body(resource);
-        } else {
-            return ResponseEntity.notFound().build();
+
+        if(resource.exists() && resource.isReadable()){
+            return  resource;
+        }else{
+            throw new FileNotFoundException("File not found");
         }
     }
 }
