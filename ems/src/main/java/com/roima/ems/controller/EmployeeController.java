@@ -26,14 +26,6 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
 
-    @Operation(
-            description = "Get Users Service",
-            responses = {
-                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400",ref = "badRequest"),
-                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "500",ref = "internalServerError"),
-                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200",ref = "successfulResponse")
-            }
-    )
     @GetMapping("/{id}")
     public ResponseEntity<?> getEmployeeById(@PathVariable Long id){
         try{
@@ -86,26 +78,6 @@ public class EmployeeController {
             return ResponseEntity.ok(response);
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
-    }
-
-    @PostMapping("/profile/{id}")
-    public ResponseEntity<?> uploadProfilePicture(@PathVariable Long id, @RequestParam("file")MultipartFile file){
-        try{
-            employeeService.uploadFile(id,file);
-            return ResponseEntity.status(HttpStatus.OK).body("File uploaded");
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to upload");
-        }
-    }
-
-    @GetMapping("/profile/{id}")
-    public ResponseEntity<?> getProfilePicture(@PathVariable Long id){
-        try{
-            Resource resource =employeeService.getProfilePicture(id);
-            return ResponseEntity.status(HttpStatus.OK).body(resource);
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 

@@ -24,6 +24,7 @@ public class Employees {
     private String department;
     private Integer salary;
 
+    private String profilePath;
     @CreatedDate
     private LocalDateTime createdAt;
 

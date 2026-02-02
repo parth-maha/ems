@@ -91,33 +91,4 @@ public class EmployeeService {
 
         return modelMapper.map(employeeRepo.save(employee), EditEmployeeDTO.class);
     }
-
-    public void uploadFile(Long id,MultipartFile file) throws IOException {
-        Employees employee = employeeRepo.findById(id)
-                .orElseThrow(()-> new IllegalArgumentException("Employee not found"));
-
-        String fileName = "profile_" + id + ".png";
-
-        Path path = Paths.get(imageFolder + fileName);
-
-        Files.write(path,file.getBytes());
-    }
-
-    public Resource getProfilePicture(Long id) throws Exception {
-        Employees employee = employeeRepo.findById(id)
-                .orElseThrow(()-> new IllegalArgumentException("Employee not found"));
-
-        String fileName = "profile_" + id + ".png";
-        Path filePath = Paths.get(imageFolder).resolve(fileName);
-
-        Resource resource = new UrlResource(filePath.toUri());
-        if(resource.exists()){
-            HttpHeaders headers = new HttpHeaders();
-            headers.set("Cache-Control", "public, max-age=3600");
-
-            return resource;
-        }
-
-        throw new Exception("File not found");
-    }
 }
