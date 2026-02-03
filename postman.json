@@ -1,0 +1,1591 @@
+{
+  "info": {
+    "_postman_id": "910f8e4e-30dc-4193-9cb1-e532b275a1c7",
+    "name": "Employee management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51760852",
+    "_collection_link": "https://go.postman.co/collection/51760852-910f8e4e-30dc-4193-9cb1-e532b275a1c7?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Add Employee",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJ0aG1haGE5QGdtYWlsLmNvbSIsInVzZXJJZCI6IjEiLCJpYXQiOjE3NzAwMjg0NjEsImV4cCI6MTc3MDg5MjQ2MX0.C2XChpeFx3uqP4NqE_c98HVwgx0e1B2LYksMRd-AEe8",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\" : \"parth.maha@roimaint.com\",\r\n    \"name\" : \"Parth Roima\",\r\n    \"salary\" : \"2222\",\r\n    \"department\" : \"Discrete/lean\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/employees",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "employees"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Add Employee",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\" : \"parth.maha@roimaint.com\",\r\n    \"name\" : \"Parth Roima\",\r\n    \"salary\" : \"2222\",\r\n    \"department\" : \"Discrete/lean\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/employees",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "employees"
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "",
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 02 Feb 2026 10:36:37 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [
+            {
+              "expires": "Invalid Date",
+              "domain": "",
+              "path": ""
+            }
+          ],
+          "body": "{\n    \"id\": 2,\n    \"name\": \"Parth Roima\",\n    \"email\": \"parth.maha@roimaint.com\",\n    \"department\": \"Discrete/lean\",\n    \"salary\": 2222,\n    \"createdAt\": null,\n    \"modified_at\": null\n}"
+        }
+      ]
+    },
+    {
+      "name": "Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "localstorage.setItem(pm.response.body.token)"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\" : \"parthmaha9@gmail.com\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/auth/login",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Login",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\" : \"parthmaha9@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "",
+          "header": [
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "Vary",
+              "value": "Access-Control-Request-Method"
+            },
+            {
+              "key": "Vary",
+              "value": "Access-Control-Request-Headers"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 02 Feb 2026 10:10:05 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [
+            {
+              "expires": "Invalid Date",
+              "domain": "",
+              "path": ""
+            }
+          ],
+          "body": "{\n    \"email\": \"parthmaha9@gmail.com\",\n    \"token\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJ0aG1haGE5QGdtYWlsLmNvbSIsInVzZXJJZCI6IjEiLCJpYXQiOjE3NzAwMjcwMDUsImV4cCI6MTc3MDg5MTAwNX0.EIArQI9HI9_ganC5A7m98hzm56r119-MvSdrhfQDdSs\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get Employee by Id",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJ0aG1haGE5QGdtYWlsLmNvbSIsInVzZXJJZCI6IjEiLCJpYXQiOjE3NzAwMjg0NjEsImV4cCI6MTc3MDg5MjQ2MX0.C2XChpeFx3uqP4NqE_c98HVwgx0e1B2LYksMRd-AEe8",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\" : \"parth.maha@roimaint.com\",\r\n    \"name\" : \"Parth Roima\",\r\n    \"salary\" : \"2222\",\r\n    \"department\" : \"Discrete/lean\"\r\n}"
+        },
+        "url": {
+          "raw": "{{base_ur}}/employees/2",
+          "host": [
+            "{{base_ur}}"
+          ],
+          "path": [
+            "employees",
+            "2"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Get Employee by Id",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\" : \"parth.maha@roimaint.com\",\r\n    \"name\" : \"Parth Roima\",\r\n    \"salary\" : \"2222\",\r\n    \"department\" : \"Discrete/lean\"\r\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/employees/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "employees",
+                "1"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "",
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 02 Feb 2026 10:46:40 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [
+            {
+              "expires": "Invalid Date",
+              "domain": "",
+              "path": ""
+            }
+          ],
+          "body": "{\n    \"id\": 1,\n    \"name\": \"Parth\",\n    \"email\": \"parthmaha9@gmail.com\",\n    \"department\": \"Tech\",\n    \"salary\": 15000,\n    \"createdAt\": null,\n    \"modified_at\": null\n}"
+        },
+        {
+          "name": "Not found",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\" : \"parth.maha@roimaint.com\",\r\n    \"name\" : \"Parth Roima\",\r\n    \"salary\" : \"2222\",\r\n    \"department\" : \"Discrete/lean\"\r\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/employees/23",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "employees",
+                "23"
+              ]
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "text/plain;charset=UTF-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "18"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 02 Feb 2026 11:10:25 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "Employee not found"
+        }
+      ]
+    },
+    {
+      "name": "Get All Employees",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJ0aG1haGE5QGdtYWlsLmNvbSIsInVzZXJJZCI6IjEiLCJpYXQiOjE3NzAwMjg0NjEsImV4cCI6MTc3MDg5MjQ2MX0.C2XChpeFx3uqP4NqE_c98HVwgx0e1B2LYksMRd-AEe8",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/employees",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "employees"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Get All Employees",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/employees",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "employees"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "",
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 02 Feb 2026 10:50:08 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [
+            {
+              "expires": "Invalid Date",
+              "domain": "",
+              "path": ""
+            }
+          ],
+          "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Parth\",\n        \"email\": \"parthmaha9@gmail.com\",\n        \"department\": \"Tech\",\n        \"salary\": 15000,\n        \"createdAt\": null,\n        \"modified_at\": null\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Parth Roima\",\n        \"email\": \"parth.maha@roimaint.com\",\n        \"department\": \"Discrete/lean\",\n        \"salary\": 2222,\n        \"createdAt\": null,\n        \"modified_at\": null\n    }\n]"
+        }
+      ]
+    },
+    {
+      "name": "Delete Employee",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJ0aG1haGE5QGdtYWlsLmNvbSIsInVzZXJJZCI6IjEiLCJpYXQiOjE3NzAwMjg0NjEsImV4cCI6MTc3MDg5MjQ2MX0.C2XChpeFx3uqP4NqE_c98HVwgx0e1B2LYksMRd-AEe8",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/employees/3",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "employees",
+            "3"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Delete Employee",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/employees/3",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "employees",
+                "3"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "",
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "text/plain;charset=UTF-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "16"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 02 Feb 2026 11:11:45 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [
+            {
+              "expires": "Invalid Date",
+              "domain": "",
+              "path": ""
+            }
+          ],
+          "body": "Employee Deleted"
+        }
+      ]
+    },
+    {
+      "name": "Update Employee",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJ0aG1haGE5QGdtYWlsLmNvbSIsInVzZXJJZCI6IjEiLCJpYXQiOjE3NzAwMjg0NjEsImV4cCI6MTc3MDg5MjQ2MX0.C2XChpeFx3uqP4NqE_c98HVwgx0e1B2LYksMRd-AEe8",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\" : \"parth.maha@roimaint.com\",\r\n    \"name\" : \"Parth Santosh Maha\",\r\n    \"department\" : \"Lean\",\r\n    \"salary\" : 1111\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/employees/4",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "employees",
+            "4"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Update Employee",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\" : \"parth.maha@roimaint.com\",\r\n    \"name\" : \"Parth Santosh Maha\",\r\n    \"department\" : \"Lean\",\r\n    \"salary\" : 1111\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/employees/4",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "employees",
+                "4"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 02 Feb 2026 11:26:33 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"name\": \"Parth Santosh Maha\",\n    \"email\": \"parth.maha@roimaint.com\",\n    \"department\": \"Lean\",\n    \"salary\": 1111,\n    \"createdAt\": null,\n    \"modified_at\": null\n}"
+        },
+        {
+          "name": "Update Employee",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\" : \"parth.maha\",\r\n    \"name\" : \"Parth Santosh Maha\",\r\n    \"department\" : \"Lean\",\r\n    \"salary\" : 1111\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/employees/4",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "employees",
+                "4"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "text/plain;charset=UTF-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "642"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 02 Feb 2026 11:26:53 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "Validation failed for argument [1] in public org.springframework.http.ResponseEntity<?> com.roima.ems.controller.EmployeeController.updateEmployee(java.lang.Long,com.roima.ems.DTO.UpdateEmployeeDTO): [Field error in object 'updateEmployeeDTO' on field 'email': rejected value [parth.maha]; codes [Email.updateEmployeeDTO.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [updateEmployeeDTO.email,email]; arguments []; default message [email],[Ljakarta.validation.constraints.Pattern$Flag;@5e19c4d3,.*]; default message [must be a well-formed email address]] "
+        }
+      ]
+    },
+    {
+      "name": "Edit employee",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJ0aG1haGE5QGdtYWlsLmNvbSIsInVzZXJJZCI6IjEiLCJpYXQiOjE3NzAwMjg0NjEsImV4cCI6MTc3MDg5MjQ2MX0.C2XChpeFx3uqP4NqE_c98HVwgx0e1B2LYksMRd-AEe8",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"salary\" : 9999\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/employees/4",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "employees",
+            "4"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Edit employee",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"salary\" : 9999\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/employees/4",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "employees",
+                "4"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 02 Feb 2026 11:32:50 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"name\": \"Parth Santosh Maha\",\n    \"email\": \"parth.maha@roimaint.com\",\n    \"department\": \"Lean\",\n    \"salary\": 9999,\n    \"createdAt\": null,\n    \"modified_at\": null\n}"
+        },
+        {
+          "name": "Edit employee",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"salary\" : 9999\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/employees/5",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "employees",
+                "5"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "text/plain;charset=UTF-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "18"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 02 Feb 2026 11:33:08 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "Employee not found"
+        }
+      ]
+    },
+    {
+      "name": "Parameter Version",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJ0aG1haGE5QGdtYWlsLmNvbSIsInVzZXJJZCI6IjEiLCJpYXQiOjE3NzAwMjg0NjEsImV4cCI6MTc3MDg5MjQ2MX0.C2XChpeFx3uqP4NqE_c98HVwgx0e1B2LYksMRd-AEe8",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/employees/4?version=2",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "employees",
+            "4"
+          ],
+          "query": [
+            {
+              "key": "version",
+              "value": "2"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Parameter Version",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/employees/4?version=1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "employees",
+                "4"
+              ],
+              "query": [
+                {
+                  "key": "version",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "",
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 02 Feb 2026 11:55:45 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [
+            {
+              "expires": "Invalid Date",
+              "domain": "",
+              "path": ""
+            }
+          ],
+          "body": "{\n    \"status\": 200,\n    \"message\": \"Parameter Versioning\",\n    \"data\": {\n        \"id\": 4,\n        \"name\": \"Parth Santosh Maha\",\n        \"email\": \"parth.maha@roimaint.com\",\n        \"department\": \"Lean\",\n        \"salary\": 9999,\n        \"createdAt\": null,\n        \"modified_at\": null\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Header Versioning",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJ0aG1haGE5QGdtYWlsLmNvbSIsInVzZXJJZCI6IjEiLCJpYXQiOjE3NzAwMjg0NjEsImV4cCI6MTc3MDg5MjQ2MX0.C2XChpeFx3uqP4NqE_c98HVwgx0e1B2LYksMRd-AEe8",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-VERSION",
+            "value": "3",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/employees/4",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "employees",
+            "4"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Header Versioning",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-VERSION",
+                "value": "3",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/employees/4",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "employees",
+                "4"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 02 Feb 2026 12:00:41 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"status\": 200,\n    \"message\": \"Header Versioning\",\n    \"data\": {\n        \"id\": 4,\n        \"name\": \"Parth Santosh Maha\",\n        \"email\": \"parth.maha@roimaint.com\",\n        \"department\": \"Lean\",\n        \"salary\": 9999,\n        \"createdAt\": null,\n        \"modified_at\": null\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Content Versioning",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJ0aG1haGE5QGdtYWlsLmNvbSIsInVzZXJJZCI6IjEiLCJpYXQiOjE3NzAwMjg0NjEsImV4cCI6MTc3MDg5MjQ2MX0.C2XChpeFx3uqP4NqE_c98HVwgx0e1B2LYksMRd-AEe8",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/vnd.roima.ems-v3+json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/employees/4",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "employees",
+            "4"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Content Versioning",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.roima.ems-v3+json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/employees/4",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "employees",
+                "4"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/vnd.roima.ems-v3+json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 02 Feb 2026 12:04:16 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"status\": 200,\n    \"message\": \"Content Negotiation Versioning\",\n    \"data\": {\n        \"id\": 4,\n        \"name\": \"Parth Santosh Maha\",\n        \"email\": \"parth.maha@roimaint.com\",\n        \"department\": \"Lean\",\n        \"salary\": 9999,\n        \"createdAt\": null,\n        \"modified_at\": null\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Upload Profile Picture",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXJ0aG1haGE5QGdtYWlsLmNvbSIsInVzZXJJZCI6IjEiLCJpYXQiOjE3NzAwMjg0NjEsImV4cCI6MTc3MDg5MjQ2MX0.C2XChpeFx3uqP4NqE_c98HVwgx0e1B2LYksMRd-AEe8",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/vnd.roima.ems-v3+json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "uuid": "7b4fe070-463a-4ca4-a6eb-6033cc1e0977",
+              "src": "/C:/Users/mahaapar/Pictures/Screenshots/Screenshot 2026-01-30 153729.png"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/profile/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "profile",
+            "1"
+          ],
+          "query": [
+            {
+              "key": "file",
+              "value": null,
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Upload Profile Picture",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.roima.ems-v3+json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "uuid": "7b4fe070-463a-4ca4-a6eb-6033cc1e0977",
+                  "src": "/C:/Users/mahaapar/Pictures/Screenshots/Screenshot 2026-01-30 153729.png"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/profile/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "profile",
+                "1"
+              ],
+              "query": [
+                {
+                  "key": "file",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Set-Cookie",
+              "value": "FILE_REF_=profile_1.png; Expires=Mon, 02 Feb 2026 17:34:59 GMT; Max-Age=3600; Path=/; HttpOnly"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/vnd.roima.ems-v3+json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "14"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 02 Feb 2026 16:34:59 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "Image uploaded"
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "modelMapper.map(dto,Employees.class)",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": ""
+    }
+  ]
+}
