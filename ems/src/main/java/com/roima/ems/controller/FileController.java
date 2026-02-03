@@ -26,6 +26,7 @@ public class FileController {
     @PostMapping("/{id}")
     public ResponseEntity<?> uploadProfileImage(@PathVariable Long id, @RequestParam("file") MultipartFile file, HttpServletResponse response) {
         try{
+
             String fileName = fileService.saveProfileImage(file, id);
             Cookie cookie = new Cookie("FILE_REF_",fileName);
             cookie.setMaxAge(3600);
@@ -44,9 +45,15 @@ public class FileController {
     public ResponseEntity<?> getProfileImage(@PathVariable Long id, HttpServletRequest request,HttpServletResponse response) throws MalformedURLException {
         try{
             Resource resource = fileService.getProfileImage(id);
-                HttpHeaders headers = new HttpHeaders();
-                headers.set("Cache-Control", "public, max-age=3600");
-                return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(resource);
+            Long lastModified=resource.lastModified();
+
+            long oneHourInMillis = TimeUnit.HOURS.toMillis(1);
+            long oneHourAgo = System.currentTimeMillis() - oneHourInMillis;
+
+            if(lastModified < oneHourAgo){
+                return null;
+            }
+                return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).cacheControl(CacheControl.maxAge(1,TimeUnit.HOURS)).lastModified(lastModified).body(resource);
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to fetch profile");
         }

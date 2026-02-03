@@ -7,6 +7,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.HttpClientErrorException;
 
 @RestControllerAdvice
 public class GlobalResponseHandler {
@@ -14,6 +15,10 @@ public class GlobalResponseHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> exception(Exception ex){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+    @ExceptionHandler(HttpClientErrorException.Unauthorized.class)
+    public ResponseEntity<?> unauthorizedException(HttpClientErrorException.Unauthorized ex){
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized User");
     }
     @ExceptionHandler(UsernameNotFoundException.class)
     public ResponseEntity<?> userNameNotFoundException(UsernameNotFoundException ex){

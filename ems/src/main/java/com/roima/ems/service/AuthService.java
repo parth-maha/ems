@@ -12,6 +12,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -23,7 +25,7 @@ public class AuthService {
         Employees emp = employeeRepo.findByEmail(dto.getEmail())
                 .orElseThrow(()-> new UsernameNotFoundException("Employee not found"));
 
-        Authentication authentication = new UsernamePasswordAuthenticationToken(emp.getEmail(), "");
+        Authentication authentication = new UsernamePasswordAuthenticationToken(emp.getEmail(), null, Collections.emptyList());
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 

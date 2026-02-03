@@ -32,6 +32,10 @@ public class FileService {
         Employees emp = employeeRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Employee Not found"));
 
+        if(file.isEmpty()){
+            throw new FileNotFoundException("File not found");
+        }
+
         Path uploadPath = Paths.get(imagePath);
 
         if (!Files.exists(uploadPath)) {
@@ -51,7 +55,7 @@ public class FileService {
 
         String fileName = "profile_" + id + ".png";
 
-        Path filePath = Paths.get(imagePath).resolve(fileName);
+        Path filePath = Paths.get(imagePath).resolve(fileName).normalize();
         Resource resource = new UrlResource(filePath.toUri());
 
         if(resource.exists() && resource.isReadable()){
