@@ -32,6 +32,13 @@ public class SecurityConfig {
                 .exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
-            return httpSecurity.build();
+                /*
+                    Here security config will search for token in any request except
+                    the paths mentioned.
+                    In case of swagger we need to define the authorization type in the
+                    components while returning the swagger config bean
+                    Let the swagger config know that it needs token before requesting.
+                * */
+        return httpSecurity.build();
     }
 }
