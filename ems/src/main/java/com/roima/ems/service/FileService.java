@@ -1,20 +1,15 @@
 package com.roima.ems.service;
 
-import com.roima.ems.entity.Employees;
 import com.roima.ems.repository.EmployeeRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -29,7 +24,7 @@ public class FileService {
     private final EmployeeRepo employeeRepo;
 
     public String saveProfileImage(MultipartFile file, Long id) throws IOException {
-        Employees emp = employeeRepo.findById(id)
+        employeeRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Employee Not found"));
 
         if(file.isEmpty()){
@@ -51,7 +46,7 @@ public class FileService {
     }
 
     public Resource getProfileImage(Long id) throws IOException {
-        Employees emp = employeeRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Employee Not found"));
+         employeeRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Employee Not found"));
 
         String fileName = "profile_" + id + ".png";
 
