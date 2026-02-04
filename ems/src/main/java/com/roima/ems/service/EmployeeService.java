@@ -1,25 +1,16 @@
 package com.roima.ems.service;
 
-import com.roima.ems.DTO.EditEmployeeDTO;
-import com.roima.ems.DTO.EmployeeDTO;
-import com.roima.ems.DTO.UpdateEmployeeDTO;
+import com.roima.ems.dto.EditEmployeeDTO;
+import com.roima.ems.dto.EmployeeDTO;
+import com.roima.ems.dto.UpdateEmployeeDTO;
 import com.roima.ems.entity.Employees;
 import com.roima.ems.repository.EmployeeRepo;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 @Service

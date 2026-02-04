@@ -32,7 +32,7 @@ public class FileController {
             cookie.setMaxAge(3600);
             cookie.setHttpOnly(true);
             cookie.setPath("/");
-            cookie.setSecure(false);
+            cookie.setSecure(true);
 
             response.addCookie(cookie);
             return ResponseEntity.ok().body("Image uploaded");

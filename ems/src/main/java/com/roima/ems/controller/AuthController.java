@@ -1,7 +1,7 @@
 package com.roima.ems.controller;
 
-import com.roima.ems.DTO.AuthResponseDTO;
-import com.roima.ems.DTO.LoginDTO;
+import com.roima.ems.dto.AuthResponseDTO;
+import com.roima.ems.dto.LoginDTO;
 import com.roima.ems.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
